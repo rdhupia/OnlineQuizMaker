@@ -18,7 +18,7 @@ public class UserResponse implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="RESPONSEID")
-	private String responseid;
+	private long responseid;
 
 	private BigInteger ansId;
 
@@ -29,11 +29,11 @@ public class UserResponse implements Serializable {
 	public UserResponse() {
 	}
 
-	public String getResponseid() {
+	public long getResponseid() {
 		return this.responseid;
 	}
 
-	public void setResponseid(String responseid) {
+	public void setResponseid(long responseid) {
 		this.responseid = responseid;
 	}
 

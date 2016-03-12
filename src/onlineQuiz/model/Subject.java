@@ -16,7 +16,7 @@ public class Subject implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="SUBJECTID")
-	private String subjectid;
+	private long subjectid;
 
 	@Column(name="SUBJECTDESCRIPTION")
 	private String subjectdescription;
@@ -27,11 +27,11 @@ public class Subject implements Serializable {
 	public Subject() {
 	}
 
-	public String getSubjectid() {
+	public long getSubjectid() {
 		return this.subjectid;
 	}
 
-	public void setSubjectid(String subjectid) {
+	public void setSubjectid(long subjectid) {
 		this.subjectid = subjectid;
 	}
 

@@ -19,7 +19,7 @@ public class Record implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="RECORDID")
-	private String recordid;
+	private long recordid;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="DATEOFQUIZ")
@@ -35,11 +35,11 @@ public class Record implements Serializable {
 	public Record() {
 	}
 
-	public String getRecordid() {
+	public long getRecordid() {
 		return this.recordid;
 	}
 
-	public void setRecordid(String recordid) {
+	public void setRecordid(long recordid) {
 		this.recordid = recordid;
 	}
 

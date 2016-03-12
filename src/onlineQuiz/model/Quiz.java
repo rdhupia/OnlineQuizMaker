@@ -18,7 +18,7 @@ public class Quiz implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="QUIZID")
-	private String quizid;
+	private long quizid;
 
 	@Column(name="DIFFICULTQS")
 	private int difficultqs;
@@ -40,11 +40,11 @@ public class Quiz implements Serializable {
 	public Quiz() {
 	}
 
-	public String getQuizid() {
+	public long getQuizid() {
 		return this.quizid;
 	}
 
-	public void setQuizid(String quizid) {
+	public void setQuizid(long quizid) {
 		this.quizid = quizid;
 	}
 

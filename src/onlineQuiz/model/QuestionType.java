@@ -17,7 +17,7 @@ public class QuestionType implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="TYPEID")
-	private String typeid;
+	private long typeid;
 
 	@Column(name="TYPEDESCRIP")
 	private String typedescrip;
@@ -28,11 +28,11 @@ public class QuestionType implements Serializable {
 	public QuestionType() {
 	}
 
-	public String getTypeid() {
+	public long getTypeid() {
 		return this.typeid;
 	}
 
-	public void setTypeid(String typeid) {
+	public void setTypeid(long typeid) {
 		this.typeid = typeid;
 	}
 

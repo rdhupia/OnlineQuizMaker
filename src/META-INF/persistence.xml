@@ -16,6 +16,11 @@
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://zenit.senecac.on.ca/dps904_161a04"/>
 			<property name="javax.persistence.jdbc.user" value="dps904_161a04"/>
 			<property name="javax.persistence.jdbc.password" value="bhTG4729"/>
+			
+			<property name="eclipselink.logging.level" 
+                   value="FINE"/>
+	         <!-- EclipseLink should create the database automatically -->
+	         <property name="eclipselink.ddl-generation" value="create-or-extend-tables" /> 
 		</properties>
 	</persistence-unit>
 </persistence>

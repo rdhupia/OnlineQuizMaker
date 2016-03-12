@@ -18,7 +18,7 @@ public class AnswerChoice implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ANSID")
-	private String ansid;
+	private long ansid;
 
 	@Column(name="ANSWER")
 	private String answer;
@@ -34,11 +34,11 @@ public class AnswerChoice implements Serializable {
 	public AnswerChoice() {
 	}
 
-	public String getAnsid() {
+	public long getAnsid() {
 		return this.ansid;
 	}
 
-	public void setAnsid(String ansid) {
+	public void setAnsid(long ansid) {
 		this.ansid = ansid;
 	}
 

@@ -18,7 +18,7 @@ public class Question implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="QUESID")
-	private String quesid;
+	private long quesid;
 
 	@Column(name="ANSWEREXPLAINED")
 	private String answerexplained;
@@ -42,11 +42,11 @@ public class Question implements Serializable {
 	public Question() {
 	}
 
-	public String getQuesid() {
+	public long getQuesid() {
 		return this.quesid;
 	}
 
-	public void setQuesid(String quesid) {
+	public void setQuesid(long quesid) {
 		this.quesid = quesid;
 	}
 

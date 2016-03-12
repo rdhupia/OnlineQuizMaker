@@ -17,7 +17,7 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="USERID")
-	private String userid;
+	private int userid;
 
 	@Column(name="EMAIL")
 	private String email;
@@ -45,11 +45,11 @@ public class User implements Serializable {
 		this.role = role;
 	}
 
-	public String getUserid() {
+	public int getUserid() {
 		return this.userid;
 	}
 
-	public void setUserid(String userid) {
+	public void setUserid(int userid) {
 		this.userid = userid;
 	}
 

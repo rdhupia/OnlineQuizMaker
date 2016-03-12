@@ -18,7 +18,7 @@ public class Comment implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="COMMENTID")
-	private String commentid;
+	private long commentid;
 
 	private BigInteger recordId;
 
@@ -28,11 +28,11 @@ public class Comment implements Serializable {
 	public Comment() {
 	}
 
-	public String getCommentid() {
+	public long getCommentid() {
 		return this.commentid;
 	}
 
-	public void setCommentid(String commentid) {
+	public void setCommentid(long commentid) {
 		this.commentid = commentid;
 	}
 
