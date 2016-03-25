@@ -31,6 +31,12 @@ public class Subject implements Serializable {
 		return this.subjectid;
 	}
 
+	public Subject(long subjectid, String subjectdescription, String subjectname) {
+		this.subjectid = subjectid;
+		this.subjectdescription = subjectdescription;
+		this.subjectname = subjectname;
+	}
+
 	public void setSubjectid(long subjectid) {
 		this.subjectid = subjectid;
 	}

@@ -34,6 +34,14 @@ public class AnswerChoice implements Serializable {
 	public AnswerChoice() {
 	}
 
+	public AnswerChoice(long ansid, String answer, int correct, int numoftimesselected, BigInteger quesId) {
+		this.ansid = ansid;
+		this.answer = answer;
+		this.correct = correct;
+		this.numoftimesselected = numoftimesselected;
+		this.quesId = quesId;
+	}
+
 	public long getAnsid() {
 		return this.ansid;
 	}

@@ -28,6 +28,12 @@ public class QuestionType implements Serializable {
 	public QuestionType() {
 	}
 
+	public QuestionType(long typeid, String typedescrip, String typename) {
+		this.typeid = typeid;
+		this.typedescrip = typedescrip;
+		this.typename = typename;
+	}
+
 	public long getTypeid() {
 		return this.typeid;
 	}

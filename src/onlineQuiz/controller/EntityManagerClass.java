@@ -24,11 +24,11 @@ public class EntityManagerClass {
 		// Read existing entries in User
 		User user = new User();
 		//Security sec = new Security();
-		user.setEmail("rdhupia@myseneca.ca");
-		user.setFirstname("Ravideep");
-		user.setLastname("Dhupia");
-		user.setRole(9);
-		user.setPassword("admin");
+		user.setEmail("vito@myseneca.ca");
+		user.setFirstname("BigVito");
+		user.setLastname("Thegreat");
+		user.setRole(4);
+		user.setPassword("learner");
 		em.persist(user);
 		
 		em.getTransaction().commit();

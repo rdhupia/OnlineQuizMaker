@@ -40,6 +40,17 @@ public class Quiz implements Serializable {
 	public Quiz() {
 	}
 
+	public Quiz(long quizid, int difficultqs, int easyqs, int mediumqs, String quizdescription, String quizname,
+			BigInteger subjectId) {
+		this.quizid = quizid;
+		this.difficultqs = difficultqs;
+		this.easyqs = easyqs;
+		this.mediumqs = mediumqs;
+		this.quizdescription = quizdescription;
+		this.quizname = quizname;
+		this.subjectId = subjectId;
+	}
+
 	public long getQuizid() {
 		return this.quizid;
 	}

@@ -35,6 +35,14 @@ public class Record implements Serializable {
 	public Record() {
 	}
 
+	public Record(long recordid, Date dateofquiz, BigInteger quizId, int score, BigInteger userId) {
+		this.recordid = recordid;
+		this.dateofquiz = dateofquiz;
+		this.quizId = quizId;
+		this.score = score;
+		this.userId = userId;
+	}
+
 	public long getRecordid() {
 		return this.recordid;
 	}

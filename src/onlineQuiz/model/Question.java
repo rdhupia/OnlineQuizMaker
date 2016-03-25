@@ -42,6 +42,18 @@ public class Question implements Serializable {
 	public Question() {
 	}
 
+	public Question(long quesid, String answerexplained, int difficultylevel, String hint, int numoftimesasked,
+			String question, BigInteger questionTypeId, BigInteger quizId) {
+		this.quesid = quesid;
+		this.answerexplained = answerexplained;
+		this.difficultylevel = difficultylevel;
+		this.hint = hint;
+		this.numoftimesasked = numoftimesasked;
+		this.question = question;
+		this.questionTypeId = questionTypeId;
+		this.quizId = quizId;
+	}
+
 	public long getQuesid() {
 		return this.quesid;
 	}
