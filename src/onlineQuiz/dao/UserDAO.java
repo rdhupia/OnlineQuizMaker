@@ -37,13 +37,11 @@ public class UserDAO {
         
     public User getUser( int userId ) {
 		return em.find(User.class, userId);
-    	
     }
     
     @SuppressWarnings("unchecked")
 	public List<User> getAllUsers() {
 		return em.createNamedQuery("User.findAll").getResultList();
-    	
     }
 
 }

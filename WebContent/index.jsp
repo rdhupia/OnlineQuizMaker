@@ -1,37 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="onlineQuiz.model.User"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Log In</title>
+<%
+	User user;
+	int role = -1;
+	// Allow access only if session exists
+	if(session.getAttribute("user") == null) {
+		System.out.println("Session not set, redirect to login.jsp");
+		response.sendRedirect("login.jsp");
+	} else {
+		user = (User)session.getAttribute("user");
+		role = user.getRole();
+	}
+	
+	String userName = null;
+	String sessionID = null;
+	
+	Cookie[] cookies =request.getCookies();
+	if(cookies != null) {
+		for( Cookie cookie: cookies )
+			if( cookie.getName().equals("name"))
+				userName = cookie.getValue();
+	}
+%>
+<title>Online Quiz Maker</title>
 </head>
 <body>
-	<center><h1>Quiz Time</h1></center>
-	<br><br><br>
-    <center><h2>Log In</h2></center>
-    <center>
-        <form name="login" method="POST" action="LoginServlet">
-            <table cellpadding=5 cellspacing=5>
-			    <tr>
-			        <td>Email:</td>
-			        <td><input type="text" name="username" align="right" /></td>
-			    </tr>
-			    <tr>
-			        <td>Password:</td>
-			        <td><input type="password" name="password" align="right" /></td>
-			    </tr>
-			    <tr>
-			        <td></td>
-			        <td><center><input type="submit" name="login" value="Log In" /></center></td>
-			    </tr>
-			    <tr><td></td><td></td></tr>
-			    <tr>
-			    	<td></td>
-			    	<td><a href="forgotPassword.jsp">Forgot Password</a></td>
-			    </tr>
-           </table>
-       </form>
-   </center>
+	<h1>Welcome <%=userName %> to your Home Page</h1>
+	<%
+		if( role < 4 ) {
+			%>
+	<p>Take a Quiz</p>		
+	<%	}
+		else if( role >= 4 && role < 9) {	
+	%>
+	<p>Create a Quiz</p>
+	<% }
+	%>
+	
 </body>
 </html>

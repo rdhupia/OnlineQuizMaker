@@ -49,7 +49,7 @@
     	<tr><td></td><td></td></tr>
     	<tr>
 	    	<td></td>
-	    	<td><a href="index.jsp" >Log In</a></td>
+	    	<td><a href="login.jsp" >Log In</a></td>
     	</tr>
     </table>
   </form>

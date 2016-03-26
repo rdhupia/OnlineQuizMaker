@@ -11,11 +11,13 @@ public class EntityManagement {
 	private EntityManager em;
 	
 	public EntityManagement() {
-		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-		em = factory.createEntityManager();
+		// No need to instantiate factory if already instantiated
+		if(factory == null)
+			factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 	}
 	
 	public EntityManager getEntityManager() {
+		em = factory.createEntityManager();
 		em.getTransaction().begin();
 		return em;
 	}

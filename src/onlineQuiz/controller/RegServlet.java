@@ -41,6 +41,7 @@ public class RegServlet extends HttpServlet {
 		String conPassword = request.getParameter("conPassword");
 		int role = Integer.parseInt(request.getParameter("role"));
 
+		// Create User Entity object
 		User user = new User(email, fname, lname, password, role);
 		request.setAttribute("user", user);
 		
