@@ -2,10 +2,8 @@ package onlineQuiz.dao;
 
 import java.util.List;
 
-import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import onlineQuiz.model.User;
 
@@ -13,12 +11,14 @@ import onlineQuiz.model.User;
  * Session Bean implementation class UserDAO
  */
 @Stateless
-@LocalBean
 public class UserDAO {
-
-	@PersistenceContext(unitName = "OnlineQuizWebApp")
+ 
 	private EntityManager em;
     
+	public UserDAO(EntityManager em) {
+		this.em = em;
+	}
+	
     public void addUser( User user ) {
     	em.persist(user);
     }
@@ -32,7 +32,7 @@ public class UserDAO {
     }
     
     public User getUserByEmail( String email ) {
-    	return em.find(User.class, email);
+    	return (User) em.createQuery("SELECT u FROM User u where u.email =:value1").setParameter("value1", email).getSingleResult();
     }
         
     public User getUser( int userId ) {
@@ -45,7 +45,5 @@ public class UserDAO {
 		return em.createNamedQuery("User.findAll").getResultList();
     	
     }
-    
-    
 
 }

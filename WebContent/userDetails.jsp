@@ -14,7 +14,7 @@
     	User user = (User)request.getAttribute("user");
     	String userRole;
     	String message;
-    	Boolean isRegistered = (Boolean)request.getAttribute("registrerd");
+    	Boolean isRegistered = (Boolean)request.getAttribute("registered");
     	if( isRegistered )
     		message = "You have successfully registered. Please Log In to continue.";
     	else
@@ -28,6 +28,7 @@
     		userRole = "Super Admin";
     		
     %>
+    <p><%=message%></p>
     <table cellpadding=5 cellspacing=5>
     	<tr>
     		<td>First Name: </td>
@@ -52,6 +53,5 @@
     	</tr>
     </table>
   </form>
-  <p><%=message%></p>
 </body>
 </html>

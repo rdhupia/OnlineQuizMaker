@@ -11,6 +11,7 @@
 		<class>onlineQuiz.model.User</class>
 		<class>onlineQuiz.model.Quiz</class>
 		<class>onlineQuiz.model.UserResponse</class>
+		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://zenit.senecac.on.ca/dps904_161a04"/>

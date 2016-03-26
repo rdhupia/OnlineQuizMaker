@@ -35,6 +35,8 @@
 	    		learner = "checked";
 	    	}
    		}
+   		
+   		// Errors
     	String userExistsError = (String)request.getAttribute("userExistsError");
     	String pwdMatchError = (String)request.getAttribute("pwdMatchError");
     	String emailMatchError = (String)request.getAttribute("emailMatchError");
