@@ -58,7 +58,7 @@ public class LogInServlet extends HttpServlet {
 		if(loggedIn && (user != null) ) {
 			// Create session
 			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
+			session.setAttribute("loggedIn", user);
 			// Session expiry 1 hr
 			session.setMaxInactiveInterval(60*60);
 			// Set Cookie

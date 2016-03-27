@@ -101,5 +101,14 @@ public class User implements Serializable {
 	public void setRole(int role) {
 		this.role = role;
 	}
+	
+	public String getRoleName() {
+		if(role < 4)
+			return "Learner";
+		else if(role >= 4 && role < 9)
+			return "Teacher";
+		else 
+			return "Super Admin";
+	}
 
 }

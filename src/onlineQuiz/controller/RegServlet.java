@@ -54,7 +54,7 @@ public class RegServlet extends HttpServlet {
 				boolean userExists = true;
 				// Check if a user is registered with the same email
 				try {
-					User temp = userDao.getUserByEmail(email);
+					userDao.getUserByEmail(email);
 				} catch (NoResultException e) {
 					userExists = false;
 				}
