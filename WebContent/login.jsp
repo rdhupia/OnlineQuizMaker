@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Log In</title>
+<link rel="stylesheet" type="text/css" href="css/custom.css" />
 </head>
 <c:if test="${ not empty sessionScope.loggedIn }">
 	<c:redirect url="index.jsp" />
@@ -32,11 +33,11 @@
 			    <tr><td></td><td></td></tr>
 			    <tr>
 			    	<td></td>
-			    	<td><a href="forgotPassword.jsp">Forgot Password</a></td>
+			    	<td class="linkbutton"><a href="forgotPassword.jsp">Forgot Password</a></td>
 			    </tr>
 			    <tr>
 			    	<td>New User: </td>
-			    	<td><a href="register.jsp">Create Account</a></td>
+			    	<td class="linkbutton"><a href="register.jsp">Create Account</a></td>
 			    </tr>
            </table>
        </form>

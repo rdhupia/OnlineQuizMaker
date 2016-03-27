@@ -7,6 +7,9 @@
 <c:if test="${ empty sessionScope.loggedIn }">
 	<c:redirect url="login.jsp" />
 </c:if>
-<a href="logout.jsp">Logout 
-	<c:out value="${sessionScope.loggedIn.firstname}" />
-</a>
+<div class="linkbutton">
+	<a id="logout" href="logout.jsp">Logout 
+		<c:out value="${sessionScope.loggedIn.firstname}" />
+	</a>
+</div>
+<link rel="stylesheet" type="text/css" href="css/custom.css" />

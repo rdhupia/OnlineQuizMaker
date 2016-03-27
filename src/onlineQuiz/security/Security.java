@@ -3,12 +3,8 @@ package onlineQuiz.security;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
-import onlineQuiz.connection.ConnectionPool;
  
 public class Security {
 
@@ -27,7 +23,8 @@ public class Security {
         return (new BigInteger(messageDigest.digest())).toString(16);
          
     }
-     
+  
+    /* Dont need with Entity Management
     public String retrieveEncryptedPassword(String userID){
     	String storedEncryptedPwd = null;
     	
@@ -41,5 +38,6 @@ public class Security {
             return true;
         return false;
     }
+    */
  
 }

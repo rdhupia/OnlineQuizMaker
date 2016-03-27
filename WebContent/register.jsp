@@ -7,11 +7,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Registration</title>
+<link rel="stylesheet" type="text/css" href="css/custom.css" />
 </head>
 
 <body>
 
-  <h2>Registration</h2>
+  <center><h2>Registration</h2></center>
+  <center>
   <form id="regForm" action="RegServlet" method="POST">
    <c:if test="${ role >= 4 } ">
    		<c:set var="admin" value="checked" />
@@ -75,5 +77,6 @@
     </table>
   </form>
   <p>${userExistsError}</p>
+  </center>
 </body>
 </html>
