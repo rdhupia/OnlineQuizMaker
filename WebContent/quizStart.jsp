@@ -6,13 +6,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Online Quiz Maker</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Quiz Time!!!</title>
 	<%@include file="header.jsp" %>
 </head>
 <body>
 	<c:set var="currentUser" value="${sessionScope.loggedIn }" /> 
-	<h1>Welcome to your Home Page, ${ currentUser.firstname } !! </h1>
+	<h1>It's Quiz Time !! </h1>
 	<!-- -----------------LEARNER------------------------------- -->
 	<c:if test="${ currentUser.getRole() < 4 }">
 		<div class="main_content">
@@ -25,32 +25,22 @@
 				</ul>
 			</div>
 			<div class="sub_content">
-	<!-- Quizzes List -->
-				<h3>Take a Quiz</h3>
-				<form action="quizStart.jsp" method="GET">
+	<!-- Confirmation -->
+				<h3>Start the Quiz ?</h3>
+				<form action="QuizStartServlet" method="POST">
 					
-	                <table class="gradienttable">
-	                	<tr>
-	                		<th>SELECT</th>
-	                		<th>QUIZ</th>
-	                		<th>DESCRIPTION</th>
-	                		<th># OF Qs</th>
-	                		<th>DIFFICULTY SCORE</th>
-	                	</tr>
-	                	<c:set var="quizzes" scope="session" value="${ quizzes }" />
 	                	<c:forEach var="quiz" items="${ quizzes }">
-	                    <tr>
-	                        <td><input type="radio" name="quizId" value="${ quiz.quizid }" ></td>
-	                        <td>${ quiz.quizname }</td>
-	                        <td>${ quiz.quizdescription }</td>
-	                        <td>${ quiz.difficultqs + quiz.easyqs + quiz.mediumqs }</td>
-	                        <td><fmt:formatNumber value="${ (((quiz.difficultqs*2)+ quiz.mediumqs) / ((quiz.difficultqs + quiz.easyqs + quiz.mediumqs)*2))*100 }" 
-												  maxFractionDigits="0"/></td>
-	                    </tr>
+	                		<c:if test="${ quiz.quizid == param.quizId }" >
+	                			<p>Are you sure you want to start this quiz?<p>
+	                			 <p>QUIZ NAME        : ${ quiz.quizname } 
+	                			<br>DESCRIPTION      : ${ quiz.quizdescription } 
+	                			<br>DIFFICULTY SCORE : <fmt:formatNumber value="${ (((quiz.difficultqs*2)+ quiz.mediumqs) / ((quiz.difficultqs + quiz.easyqs + quiz.mediumqs)*2))*100 }" maxFractionDigits="0"/>
+	                			<br>TOTAL QUESTIONS  : ${ quiz.difficultqs + quiz.easyqs + quiz.mediumqs } 
+	                		</c:if>	    
 	                    </c:forEach>
-	                </table>
 	                
-	                <input type="submit" name="selectQuiz" value="Choose" />
+	                <br><br>
+	                <input type="submit" name="startQuiz" value="Bring it On!" />
 	            </form>
 				<p style="font-size:12px">Difficulty scores:<br> (0-30) Cake walk<br> (30-50) A Thinker<br> (50-75) Tough Cookie<br> (75-100) Bonkers!!! </p>
 				<p>${ quizNotFound }</p>
@@ -84,5 +74,6 @@
 	</c:if>
 <!-- -----------------/ SUPERADMIN ------------------------------- -->
 					
+
 </body>
 </html>
