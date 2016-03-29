@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 
 import onlineQuiz.model.Comment;
+import onlineQuiz.model.Record;
 
 /**
  * Session Bean implementation class CommentDAO
@@ -19,8 +20,28 @@ public class CommentDAO {
 		this.em = em;
 	}
 	
-    public void addComment( Comment Comment ) {
-    	em.persist(Comment);
+    public Comment addComment( Comment comment ) {
+    	String text = "Did you even take the Quiz?";
+    	Record r = (Record)em.find(Record.class, comment.getRecordId().longValue());
+    	if( r != null ) {
+    		int score = r.getScore();
+    		if( score > 0 && score < 35 ) 
+    			text = "You can certainly do better, brush up on the topics and try again later.";
+    		else if ( score >= 35 && score < 55 )
+    			text = "Good Effort, but there's room for improvement";
+    		else if ( score >= 55 && score < 75 )
+    			text = "You know your concepts well, well done!!";
+    		else if ( score >= 75 && score < 90 )
+    			text = "Great Job, you've done very well indeed!!";
+    		else if ( score >= 90 && score < 99 )
+    			text = "You're a freakin Genius!!!";
+    		else if ( score >= 100 )
+    			text = "A Perfect Performance, Mind Blowing!!";
+    	}
+    	
+    	Comment newComment = new Comment(comment.getRecordId(), text);
+    	em.persist(newComment);
+    	return newComment;
     }
     
     public void removeComment( int CommentId ) {

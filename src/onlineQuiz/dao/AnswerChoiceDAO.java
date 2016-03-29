@@ -36,8 +36,8 @@ public class AnswerChoiceDAO {
     	return em.createQuery("SELECT a FROM AnswerChoice a where a.quesId =:value1").setParameter("value1", quesId).getResultList();
     }
         
-    public AnswerChoice getAnswerChoice( int AnswerChoiceId ) {
-		return em.find(AnswerChoice.class, AnswerChoiceId);
+    public AnswerChoice getAnswerChoice( long l ) {
+		return em.find(AnswerChoice.class, l);
     }
     
     @SuppressWarnings("unchecked")

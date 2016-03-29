@@ -25,6 +25,7 @@
 				<p>Question-${ index+1 } </p>
 				<p class="ques">${ quizQuestions[index].question }</p>
 				<input type="button" class="hint" onclick="alert('${ quizQuestions[index].hint }');" value="Grab a Hint" /><br><br>
+				
 				<form action="TakeQuizServlet" method="POST">
 					<input type="hidden" name="newIndex" value="${ index + 1 }" />
 					<input type="hidden" name="typeOfQ" value="${ quizQuestions[index].getQuestionType() }" />

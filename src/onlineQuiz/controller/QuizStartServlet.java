@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -115,7 +114,6 @@ public class QuizStartServlet extends HttpServlet {
 				answers.add(answerGroup);
 				x++;
 			}
-			System.out.println("BEFORE BREAK");
 			canAddToQuiz = false;
 			if( easy == easyQuesNumber && med == medQuesNumber && diff == diffQuesNumber ) 
 				break;
@@ -124,21 +122,12 @@ public class QuizStartServlet extends HttpServlet {
 		System.out.println("Question 4: " + quizQuestions.get(4).getQuestion() + "; Answer 1 for 4: " + answers.get(4).get(0).getAnswer());
 		mgr.closeTransaction();
 		
-		// Create new record for the user
+		// Create new Record for the user's New Quiz Attempt
 		Record record = new Record(quizIdBig, 0, userIdBig);
 		EntityManager em = mgr.getEntityManager();
 		recordDao = new RecordDAO( em );
-		
-		try {
-			recordDao.getRecordByUserAndQuiz(userIdBig, quizIdBig);
-		} catch(NoResultException e) {
-			recordDao.addRecord(record);
-			em.getTransaction().commit();
-			System.out.println("No Result Exception ");
-		}
-		
-		recordNumber = recordDao.getRecordByUserAndQuiz(userIdBig, quizIdBig).getRecordid();
-		
+		recordNumber = recordDao.addRecordAndGetId(record);
+		System.out.println("RECORDID(Create): " + recordNumber);
 		System.out.println("RecordId: " + recordNumber);
 		System.out.println("QuizStartServlet=> Answers: " + answers.size());
 		for( int i =0; i < answers.size(); i++)

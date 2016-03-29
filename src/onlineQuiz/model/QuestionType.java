@@ -17,7 +17,7 @@ public class QuestionType implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="TYPEID")
-	private long typeid;
+	private long typeid;									// 1 MCQ, 2 T/F, 3 Input text, 4 Multi-select
 
 	@Column(name="TYPEDESCRIP")
 	private String typedescrip;

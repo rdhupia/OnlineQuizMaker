@@ -47,6 +47,12 @@ public class Record implements Serializable {
 		this.score = score;
 		this.userId = userId;
 	}
+	
+	public Record(long recordId, Date date, int score) {
+		this.recordid = recordId;
+		this.dateofquiz = date;
+		this.score = score;
+	}
 
 	public long getRecordid() {
 		return this.recordid;

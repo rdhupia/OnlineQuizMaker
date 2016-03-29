@@ -32,12 +32,12 @@ public class UserResponseDAO {
     }
     
     @SuppressWarnings("unchecked")
-	public List<UserResponse> getUserResponsezesByRecord( BigInteger recordId ) {
+	public List<UserResponse> getUserResponsesesByRecord( BigInteger recordId ) {
     	return em.createQuery("SELECT u FROM UserResponse u where u.recordId =:value1").setParameter("value1", recordId).getResultList();
     }
     
     @SuppressWarnings("unchecked")
-	public List<UserResponse> getUserResponsezesByQuestion( BigInteger quesId ) {
+	public List<UserResponse> getUserResponsesesByQuestion( BigInteger quesId ) {
     	return em.createQuery("SELECT u FROM UserResponse u where u.quesId =:value1").setParameter("value1", quesId).getResultList();
     }
         

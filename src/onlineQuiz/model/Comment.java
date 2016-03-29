@@ -28,11 +28,15 @@ public class Comment implements Serializable {
 	public Comment() {
 	}
  
-	public Comment(long commentid, BigInteger recordId, String text) {
-		this.commentid = commentid;
+	public Comment( BigInteger recordId, String text) {
 		this.recordId = recordId;
 		this.text = text;
 	}
+	
+	public Comment(BigInteger recordId) {
+		this.recordId = recordId;
+	}
+
 
 	public long getCommentid() {
 		return this.commentid;

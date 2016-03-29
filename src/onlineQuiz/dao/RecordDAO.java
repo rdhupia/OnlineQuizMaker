@@ -1,6 +1,7 @@
 package onlineQuiz.dao;
 
 import java.math.BigInteger;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -21,15 +22,22 @@ public class RecordDAO {
 	}
 	
     public void addRecord( Record Record ) {
-    	em.persist(Record); System.out.println("PERSIS RECORD");
+    	em.persist(Record);
     }
     
     public void removeRecord( int RecordId ) {
     	em.remove( getRecord(RecordId) );
     }
     
-    public void updateRecord( Record Record ) {
-    	em.merge(Record);
+    public void updateRecord( long recordid, Date dateofquiz, int score ) {
+    	Record r = (Record)em.find(Record.class, recordid);
+    	if(r != null) {
+    		r.setDateofquiz(dateofquiz);
+    		r.setScore(score);
+    		System.out.println("Record updated successfully");
+    	}
+    	else
+    		System.out.println("Entity does not exist");
     }
     
     @SuppressWarnings("unchecked")
@@ -48,6 +56,18 @@ public class RecordDAO {
     
     public Record getRecord( int RecordId ) {
 		return em.find(Record.class, RecordId);
+    }
+    
+    public long addRecordAndGetId( Record record) {
+    	em.persist(record);
+    	em.getTransaction().commit();
+    	return record.getRecordid();
+    }
+    
+    public long updateRecordAndGetId( Record record) {
+    	em.merge(record);
+    	em.getTransaction().commit();
+    	return record.getRecordid();
     }
     
     @SuppressWarnings("unchecked")

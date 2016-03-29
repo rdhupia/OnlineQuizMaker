@@ -36,8 +36,8 @@ public class QuestionDAO {
     	return em.createQuery("SELECT q FROM Question q where q.quizId =:value1").setParameter("value1", quizId).getResultList();
     }
         
-    public Question getQuestion( int QuestionId ) {
-		return em.find(Question.class, QuestionId);
+    public Question getQuestion( long l ) {
+		return em.find(Question.class, l);
     }
     
     @SuppressWarnings("unchecked")

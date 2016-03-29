@@ -24,7 +24,7 @@ public class AnswerChoice implements Serializable {
 	private String answer;
 
 	@Column(name="CORRECT")
-	private int correct;
+	private int correct;                              // 1 correct, 0 incorrect
 
 	@Column(name="NUMOFTIMESSELECTED")
 	private int numoftimesselected;
