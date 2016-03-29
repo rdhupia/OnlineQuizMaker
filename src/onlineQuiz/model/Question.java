@@ -105,6 +105,10 @@ public class Question implements Serializable {
 	public BigInteger getQuestionTypeId() {
 		return this.questionTypeId;
 	}
+	
+	public int getQuestionType() {
+		return this.questionTypeId.intValue();
+	}
 
 	public void setQuestionTypeId(BigInteger questionTypeId) {
 		this.questionTypeId = questionTypeId;

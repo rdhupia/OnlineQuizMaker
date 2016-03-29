@@ -46,6 +46,22 @@ h1 {
 	padding: 0.5%;
 }
 
+.question {
+	background-color: #FFFFCC;
+	padding: 4% 2%;
+	width: 75%;
+}
+
+input.hint {
+	float: right;
+}
+
+p.ques {
+	font-size: 20px;
+	font-weight: bold;
+	
+}
+
 /* VERTICAL MENU SIDEBAR */
 .menu_simple {
 	float: left;
@@ -130,3 +146,25 @@ table.gradienttable td {
 	border: 1px solid #999999;
 }
 
+/* Progress Bar */
+#progress-bar {
+    width: 30%;
+    background: #cccccc;
+    position: relative;
+    left: 25%;
+}
+
+#progress-bar-percentage {
+    background: #3063A5;
+    padding: 5px 0px;
+    color: #FFF;
+    text-align: center;
+    height: 20px;
+}
+
+#progress-bar-percentage span {
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    left: 0;
+}

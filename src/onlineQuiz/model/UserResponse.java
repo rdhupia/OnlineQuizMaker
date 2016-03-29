@@ -29,8 +29,8 @@ public class UserResponse implements Serializable {
 	public UserResponse() {
 	}
 
-	public UserResponse(long responseid, BigInteger ansId, BigInteger quesId, BigInteger recordId) {
-		this.responseid = responseid;
+	public UserResponse(BigInteger ansId, BigInteger quesId, BigInteger recordId) {
+		
 		this.ansId = ansId;
 		this.quesId = quesId;
 		this.recordId = recordId;

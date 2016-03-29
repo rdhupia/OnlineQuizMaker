@@ -64,10 +64,7 @@ public class QuizzesServlet extends HttpServlet {
 			mgr.closeTransaction();
 			return;
 		}
-		request.getRequestDispatcher("/quizzes.jsp").forward(request, response);
-		System.out.println("Error in QuizzesServlet 65");
-		mgr.closeTransaction();
-		return;
+		
 	}
 
 }

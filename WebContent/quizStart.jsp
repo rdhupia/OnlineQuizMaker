@@ -31,6 +31,9 @@
 					
 	                	<c:forEach var="quiz" items="${ quizzes }">
 	                		<c:if test="${ quiz.quizid == param.quizId }" >
+	                			<c:set var="currentQuiz" scope="session" value="${ quiz }" />					<!-- ************************************************* -->
+	                			<input type="hidden" name="quizId" value="${ quiz.quizid }" />
+	                			<input type="hidden" name="userId" value="${ currentUser.userid }" />
 	                			<p>Are you sure you want to start this quiz?<p>
 	                			 <p>QUIZ NAME        : ${ quiz.quizname } 
 	                			<br>DESCRIPTION      : ${ quiz.quizdescription } 

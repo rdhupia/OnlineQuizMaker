@@ -21,7 +21,7 @@ public class RecordDAO {
 	}
 	
     public void addRecord( Record Record ) {
-    	em.persist(Record);
+    	em.persist(Record); System.out.println("PERSIS RECORD");
     }
     
     public void removeRecord( int RecordId ) {
@@ -41,6 +41,11 @@ public class RecordDAO {
 	public List<Record> getRecordsByUser( BigInteger userId ) {
     	return em.createQuery("SELECT r FROM Record r where r.userId =:value1").setParameter("value1", userId).getResultList();
     }    
+    
+	public Record getRecordByUserAndQuiz( BigInteger userId, BigInteger quizId ) {
+    	return (Record) em.createQuery("SELECT r FROM Record r where r.userId =:value1 and r.quizId =:value2").setParameter("value1", userId).setParameter("value2", quizId).getSingleResult();
+    }
+    
     public Record getRecord( int RecordId ) {
 		return em.find(Record.class, RecordId);
     }
