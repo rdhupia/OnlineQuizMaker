@@ -19,9 +19,9 @@
 	<!-- Menu -->
 			<div class="menu_simple">
 				<ul>
-					<li><a href="myaccount.jsp">MY ACCOUNT</a></li>
-					<li><a class="current "href="index.jsp">TAKE A QUIZ</a></li>
-					<li><a href="records.jsp">MY QUIZZES</a></li>
+					<li><a href="#">MY ACCOUNT</a></li>
+					<li><a class="current" href="index.jsp">TAKE A QUIZ</a></li>
+					<li><a href="#">MY QUIZZES</a></li>
 				</ul>
 			</div>
 			<div class="sub_content">
@@ -48,19 +48,18 @@
 <!-- -----------------TEACHER------------------------------- -->
 	<c:if test="${ currentUser.getRole() >= 4 }">		
 		<div class="main_content">
+		<!-- Menu -->
 			<div class="menu_simple">
 				<ul>
-					<li><a href="#">Link 1</a></li>
-					<li><a href="#">Link 2</a></li>
-					<li><a href="#">Link 3</a></li>
-					<li><a href="#">Link 4</a></li>
-					<li><a href="#">Link 5</a></li>
+					<li><a href="#">MY ACCOUNT</a></li>
+					<li><a class="current" href="index.jsp">MY QUIZ MAKER</a></li>
+					<li><a href="#">RESULTS</a></li>
 				</ul>
 			</div>
+		<!-- Subject Choice -->
 			<div class="sub_content">
-				<p>stuff</p>
-				<p>he last </p>
-				<p>: SELECT USERID, EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ROLE FROM Users WHERE (EMAIL = ?)	bind => [learner@learner.com]</p>
+				<h3>Quiz Maker at your Service</h3>
+				<p>Choose the links on the left to create a  new quiz or modify an existing quiz.</p>
 			</div>
 		</div>
 	</c:if>

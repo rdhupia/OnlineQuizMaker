@@ -81,6 +81,11 @@ public class QuizStartServlet extends HttpServlet {
 		List<Question> questions = quesDao.getQuestionsByQuiz(quizIdBig);
 		mgr.closeTransaction();
 		
+		if(questions.size() < totalQuestions)
+		{
+			request.setAttribute("quizNotFound", "Quiz is not currently available. Please try again later, or try a different subject.");
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
+		}
 		ansDao = new AnswerChoiceDAO( mgr.getEntityManager() );
 		List<List<AnswerChoice>> answers = new ArrayList<>();
 		List<AnswerChoice> answerGroup = new ArrayList<>();

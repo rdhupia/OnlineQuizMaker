@@ -2,6 +2,8 @@ package onlineQuiz.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -13,8 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import onlineQuiz.dao.QuizDAO;
+import onlineQuiz.dao.RecordDAO;
 import onlineQuiz.dao.SubjectDAO;
 import onlineQuiz.dao.UserDAO;
+import onlineQuiz.model.Quiz;
+import onlineQuiz.model.Record;
 import onlineQuiz.model.Subject;
 import onlineQuiz.model.User;
 import onlineQuiz.security.Security;
@@ -28,6 +34,8 @@ public class LogInServlet extends HttpServlet {
 	
 	private UserDAO userDao;
 	private SubjectDAO subjectDao;
+	private RecordDAO recordDao;
+	private QuizDAO quizDao;
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -73,7 +81,31 @@ public class LogInServlet extends HttpServlet {
 			List<Subject> subjects = subjectDao.getAllSubjects();
 			System.out.println("SUBJECT: " + subjects.get(0).getSubjectname());
 			request.setAttribute("subjects", subjects);
-			request.getRequestDispatcher("/index.jsp").forward(request, response);
+
+			// Learner
+			if( user.getRole() < 4 ) {
+				request.getRequestDispatcher("/index.jsp").forward(request, response);
+			}
+			// Teacher
+			else if( user.getRole() >= 4 ) {
+				recordDao = new RecordDAO( mgr.getEntityManager() );
+				quizDao = new QuizDAO( mgr.getEntityManager() );
+				
+				// Get all records for user
+				List<Record> records = recordDao.getRecordsByUser(BigInteger.valueOf(user.getUserid()));
+				List<Quiz> quizzes = new ArrayList<>();
+				for( Record record : records ) {
+					long quizId = record.getQuizId().longValue();
+					quizzes.add( quizDao.getQuiz(quizId) );
+				}
+				// Sending quizzes to jsp file
+				if(quizzes != null) {
+					request.setAttribute("quizzes", quizzes);
+					request.getRequestDispatcher("/quizzes.jsp").forward(request, response);
+					return;
+				}
+				
+			}
 			
 		}
 		else {
