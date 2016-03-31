@@ -59,9 +59,9 @@
 					</c:when>
 					<c:otherwise>
 						<form name="displayResults" method="get" action="RecordsServlet">
-							<input type="hidden" name="userId"
-								value="${ currentUser.userid }" /> <input type="submit"
-								value="Results">
+							<input type="hidden" name="userId" value="${ currentUser.userid }" /> 
+							<input type="hidden" name="userrole" value="${ currentUser.role }" />
+							<input type="submit" value="Results">
 						</form>
 						<br />
 						<c:out
