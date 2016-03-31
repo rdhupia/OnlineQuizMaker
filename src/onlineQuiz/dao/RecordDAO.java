@@ -44,6 +44,11 @@ public class RecordDAO {
 	public List<Record> getRecordsByQuiz( BigInteger quizId ) {
     	return em.createQuery("SELECT r FROM Record r where r.quizId =:value1").setParameter("value1", quizId).getResultList();
     }
+    
+    @SuppressWarnings("unchecked")
+	public List<Record> getRecordsByQuizAdmin( BigInteger quizId ) {
+    	return em.createQuery("SELECT r FROM Record r where r.quizId =:value1 AND r.score > -1").setParameter("value1", quizId).getResultList();
+    }
 
     @SuppressWarnings("unchecked")
 	public List<Record> getRecordsByUser( BigInteger userId ) {

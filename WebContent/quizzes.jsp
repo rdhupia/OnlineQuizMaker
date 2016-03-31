@@ -66,8 +66,8 @@
 				<ul>
 					<li><a href="#">MY ACCOUNT</a></li>
 					<li><a class="current" href="quizzes.jsp">EDIT QUIZ</a></li>
-					<li><a href="#">CREATE QUIZ</a></li>
-					<li><a href="#">RESULTS</a></li>
+					<li><a href="createQuiz.jsp">CREATE QUIZ</a></li>
+					<li><a href="records.jsp">RESULTS</a></li>
 				</ul>
 			</div>
 		<!-- Subject Choice -->
