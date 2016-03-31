@@ -23,12 +23,34 @@ public class AnswerChoiceDAO {
     	em.persist(AnswerChoice);
     }
     
-    public void removeAnswerChoice( int AnswerChoiceId ) {
-    	em.remove( getAnswerChoice(AnswerChoiceId) );
+    public void removeAnswerChoice( long ansId ) {
+    	em.remove( getAnswerChoice(ansId) );
     }
     
     public void updateAnswerChoice( AnswerChoice AnswerChoice ) {
     	em.merge(AnswerChoice);
+    }
+    
+    public void updateAnswer( String text, long id ) {
+    	AnswerChoice a = (AnswerChoice)em.find(AnswerChoice.class, id);
+    	if( a != null ) {
+    		a.setAnswer(text);
+    		System.out.println("Answer Updated");
+    	}
+    	else
+    		System.out.println("Answer entity not found");
+    }
+    
+
+    public void updateAnswerWithCorrectness( String text, long id, int correct ) {
+    	AnswerChoice a = (AnswerChoice)em.find(AnswerChoice.class, id);
+    	if( a != null ) {
+    		a.setAnswer(text);
+    		a.setCorrect(correct);
+    		System.out.println("Answer Updated");
+    	}
+    	else
+    		System.out.println("Answer entity not found");
     }
     
     @SuppressWarnings("unchecked")

@@ -30,8 +30,8 @@ public class QuestionTypeDAO {
     	em.merge(QuestionType);
     }
             
-    public QuestionType getQuestionType( int QuestionTypeId ) {
-		return em.find(QuestionType.class, QuestionTypeId);
+    public QuestionType getQuestionType( long l ) {
+		return em.find(QuestionType.class, l);
     }
     
     @SuppressWarnings("unchecked")

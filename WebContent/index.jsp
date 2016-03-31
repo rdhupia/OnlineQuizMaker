@@ -21,7 +21,7 @@
 				<ul>
 					<li><a href="#">MY ACCOUNT</a></li>
 					<li><a class="current" href="index.jsp">TAKE A QUIZ</a></li>
-					<li><a href="#">MY QUIZZES</a></li>
+					<li><a href="records.jsp">MY QUIZZES</a></li>
 				</ul>
 			</div>
 			<div class="sub_content">

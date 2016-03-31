@@ -65,7 +65,8 @@
 			<div class="menu_simple">
 				<ul>
 					<li><a href="#">MY ACCOUNT</a></li>
-					<li><a class="current" href="quizzes.jsp">MY QUIZ MAKER</a></li>
+					<li><a class="current" href="quizzes.jsp">EDIT QUIZ</a></li>
+					<li><a href="#">CREATE QUIZ</a></li>
 					<li><a href="#">RESULTS</a></li>
 				</ul>
 			</div>
@@ -96,11 +97,7 @@
 	                    </tr>
 	                    </c:forEach>
 	                </table>
-	                
-	                <input type="submit" name="editQuiz" value="Edit Quiz" />
-	                <input type="submit" name="deleteQuiz" value="Delete Quiz" />
-	                <input type="submit" name="viewQuiz" value="View Quiz" />
-	                <input type="submit" name="addQuiz" value="Add New Quiz" />
+	                <input type="submit" name="selectQuiz" value="Choose" />	                
 	            </form>
 				<p style="font-size:12px">Difficulty scores:<br> (0-30) Cake walk<br> (30-50) A Thinker<br> (50-75) Tough Cookie<br> (75-100) Bonkers!!! </p>
 				<p>${ quizNotFound }</p>

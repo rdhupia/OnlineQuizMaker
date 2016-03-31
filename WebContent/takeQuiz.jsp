@@ -10,19 +10,35 @@
 </head>
 <c:set var="currentUser" value="${sessionScope.loggedIn }" /> 
 <body>
-	<h1> ${ currentQuiz.quizname } Quiz </h1>
+	<h1> ${ currentQuiz.quizname } Quiz </h1><hr>
 <!-- -----------------LEARNER------------------------------- -->
 	<c:if test="${ currentUser.getRole() < 4 }">
 		<div class="main_content">
 	<!-- Menu -->
 			<div class="question">
 				<c:if test="${ empty quizQuestions }" >
+				<p>QUES NOT EMPTY</p>
 					<c:set var="quizQuestions" scope="session" value="${ questions }" />											<!-- ************************************************* -->
 				</c:if>
 				<c:if test="${ empty quizAnswers }" >
-					<c:set var="quizAnswers" scope="session" value="${ answers }" />												<!-- ************************************************* -->
+					<p>ANS NOT EMPTY</p>
+					<c:set var="quizAnswers" scope="session" value="${ answers }" />	<!-- ************************************************* -->
 				</c:if>
-				<p>Question-${ index+1 } </p>
+				<c:forEach var="q" items="${ quizQuestions }" >
+								<p>A: ${ q.question }</p>
+				</c:forEach>
+				<c:forEach var="que" items="${ questions }" >
+								<p>B: ${ que.question }</p>
+				</c:forEach>
+				<c:forEach var="answer" items="${ quizAnswers[index] }" >
+								<p>A: ${ answer.answer }</p>
+				</c:forEach>
+				<c:forEach var="ans" items="${ answers[index] }" >
+								<p>B: ${ ans.answer }</p>
+				</c:forEach>
+				<p>QTYPE: ${question.getQuestionType()}</p>
+			
+				<p>Question-${ index+1 }</p>
 				<p class="ques">${ quizQuestions[index].question }</p>
 				<input type="button" class="hint" onclick="alert('${ quizQuestions[index].hint }');" value="Grab a Hint" /><br><br>
 				
@@ -33,14 +49,17 @@
 					<input type="hidden" name="quesId" value="${ quizQuestions[index].quesid }" />
 					<c:choose>
 						<c:when test="${ quizQuestions[index].getQuestionType() == 1 || quizQuestions[index].getQuestionType() == 2}" >
+						<p>1 or 2</p>
 							<c:forEach var="answer" items="${ quizAnswers[index] }" >
 								<input type="radio" name="ansId" value="${ answer.ansid }" >${ answer.answer }<br>
 							</c:forEach>
 						</c:when>
 						<c:when test="${ quizQuestions[index].getQuestionType() == 3 }" >
+						<p>3</p>
 								Answer: <input type="text" name="ans" placeholder="One word answer"><br>
 						</c:when>
-						<c:when test="${ question.getQuestionType() == 4 }" >
+						<c:when test="${ quizQuestions[index].getQuestionType() == 4 }" >
+						<p>4</p>
 							<c:forEach var="answer" items="${ quizAnswers[index] }" >
 								<input type="checkbox" name="ansIds" value="${ answer.ansid }" >${ answer.answer }<br>
 							</c:forEach>

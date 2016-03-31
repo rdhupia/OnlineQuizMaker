@@ -50,8 +50,7 @@ public class TakeQuizServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		EntityManagement mgr = new EntityManagement();
-		EntityManager em = mgr.getEntityManager();
-		responseDao = new UserResponseDAO( em );
+		
 
 		// Get parameters from takeQuiz.jsp
 		int quesType = Integer.parseInt(request.getParameter("typeOfQ"));
@@ -67,7 +66,14 @@ public class TakeQuizServlet extends HttpServlet {
 		List<List<AnswerChoice>> answers = (List<List<AnswerChoice>>) session.getAttribute("quizAnswers");
 		
 		System.out.println("AnswersList: " + answers.size());
+		for( int i = 0; i < answers.size(); i++)
+			System.out.println("TakeQuizServlet: " +  answers.get(i).get(0).getAnswer());
 		List<AnswerChoice> answerGroup = answers.get(newIndex-1);
+		
+		@SuppressWarnings("unchecked")
+		List<Question> quests = (List<Question>) session.getAttribute("quizQuestions");
+		for( int i = 0; i < quests.size(); i++)
+			System.out.println("TakeQuizServlet: " +  quests.get(i).getQuestion());
 		
 		// Get Answers given
 		int ansId = 0;
@@ -78,6 +84,7 @@ public class TakeQuizServlet extends HttpServlet {
 			else
 				ansId = 93;
 			userResponse = new UserResponse( BigInteger.valueOf(ansId), quesIdBig, recordIdBig );
+			responseDao = new UserResponseDAO( mgr.getEntityManager());
 			responseDao.addUserResponse(userResponse);
 			mgr.closeTransaction();
 			System.out.println("Type 1/2: " + ansId);
@@ -90,6 +97,7 @@ public class TakeQuizServlet extends HttpServlet {
 			else
 				ansId = 93;	    // Generic Wrong Answer in DB
 			userResponse = new UserResponse( BigInteger.valueOf(ansId), quesIdBig, recordIdBig );
+			responseDao = new UserResponseDAO( mgr.getEntityManager());
 			responseDao.addUserResponse(userResponse);
 			mgr.closeTransaction();
 			System.out.println("Type 3: " + ansId);
@@ -103,12 +111,13 @@ public class TakeQuizServlet extends HttpServlet {
 				String[] ansIds = request.getParameterValues("ansIds");
 				for( String answerId : ansIds ) {
 					userResponse = new UserResponse( new BigInteger(answerId), quesIdBig, recordIdBig );
+					responseDao = new UserResponseDAO( mgr.getEntityManager());
 					responseDao.addUserResponse(userResponse);
-					em.getTransaction().commit();
+					mgr.closeTransaction();
 					System.out.println("Type 4: " + answerId);
 				}
 			}
-			em.close();
+			
 		}
 		
 		request.setAttribute("recordId", recordId);
@@ -133,20 +142,35 @@ public class TakeQuizServlet extends HttpServlet {
 			int score = 0;
 			List<AnswerChoice>answerschosen = new ArrayList<>();
 			List<Question>quesAsked = new ArrayList<>();
+			List<Integer>quesAnswered = new ArrayList<>();
+			boolean exists = false;
 			for( UserResponse userresponse : responses) {
 				BigInteger answerId = userresponse.getAnsId();
 				BigInteger questionId = userresponse.getQuesId();
-				AnswerChoice answerchoice = ansDao.getAnswerChoice(answerId.longValue()); 
-				Question questionasked = quesDao.getQuestion(questionId.longValue());
-				if( answerchoice.getCorrect() == 1 && questionasked.getDifficultylevel() == 3 )
-					score += 3;
-				else if( answerchoice.getCorrect() == 1 && questionasked.getDifficultylevel() == 2 )
-					score += 2;
-				else if( answerchoice.getCorrect() == 1 && questionasked.getDifficultylevel() == 1 )
-					score++;
-				answerschosen.add(answerchoice);
-				quesAsked.add(questionasked);
-				System.out.println(questionasked.getQuestion()+"--"+answerchoice.getAnswer()+"--"+score);	
+				
+				
+				for( int i = 0; i < quesAnswered.size(); i++) {
+					if(quesAnswered.get(i) == questionId.intValue())
+						exists = true;
+				}
+				
+				if(!exists) {
+					quesAnswered.add(questionId.intValue());
+					
+					AnswerChoice answerchoice = ansDao.getAnswerChoice(answerId.longValue()); 
+					Question questionasked = quesDao.getQuestion(questionId.longValue());
+					if( answerchoice.getCorrect() == 1 && questionasked.getDifficultylevel() == 3 )
+						score += 3;
+					else if( answerchoice.getCorrect() == 1 && questionasked.getDifficultylevel() == 2 )
+						score += 2;
+					else if( answerchoice.getCorrect() == 1 && questionasked.getDifficultylevel() == 1 )
+						score++;
+					answerschosen.add(answerchoice);
+					quesAsked.add(questionasked);
+					System.out.println(questionasked.getQuestion()+"--"+answerchoice.getAnswer()+"--"+score);
+				}
+				exists = false;
+					
 			}
 			int outOf = (QuizStartServlet.diffQuesNumber * 3) + (QuizStartServlet.medQuesNumber * 2) + (QuizStartServlet.easyQuesNumber);
 			score = (score * 100) / outOf;

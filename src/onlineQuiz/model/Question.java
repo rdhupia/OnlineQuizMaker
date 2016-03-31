@@ -53,6 +53,17 @@ public class Question implements Serializable {
 		this.questionTypeId = questionTypeId;
 		this.quizId = quizId;
 	}
+	
+	public Question(String answerexplained, int difficultylevel, String hint, int numoftimesasked,
+			String question, BigInteger questionTypeId, BigInteger quizId) {
+		this.answerexplained = answerexplained;
+		this.difficultylevel = difficultylevel;
+		this.hint = hint;
+		this.numoftimesasked = numoftimesasked;
+		this.question = question;
+		this.questionTypeId = questionTypeId;
+		this.quizId = quizId;
+	}
 
 	public long getQuesid() {
 		return this.quesid;
@@ -72,6 +83,16 @@ public class Question implements Serializable {
 
 	public int getDifficultylevel() {
 		return this.difficultylevel;
+	}
+	
+	public String getDifficulty() {
+		if(this.difficultylevel == 1)
+			return "Easy";
+		else if(this.difficultylevel == 2)
+			return "Medium";
+		else if(this.difficultylevel == 3)
+			return "Hard";
+		return "Average";
 	}
 
 	public void setDifficultylevel(int difficultylevel) {
@@ -107,6 +128,7 @@ public class Question implements Serializable {
 	}
 	
 	public int getQuestionType() {
+		System.out.println("Getting question type......");
 		return this.questionTypeId.intValue();
 	}
 

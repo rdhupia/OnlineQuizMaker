@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import onlineQuiz.dao.AnswerChoiceDAO;
 import onlineQuiz.dao.QuestionDAO;
@@ -93,6 +94,11 @@ public class QuizStartServlet extends HttpServlet {
 		// Shuffle questions
 		Collections.shuffle(questions);
 		
+		// Remove session variables if any
+		HttpSession session = request.getSession();
+		session.removeAttribute("quizQuestions");
+		session.removeAttribute("quizAnswers");
+		
 		// Set Questions for Quiz and get answer choices
 		List<Question> quizQuestions = new ArrayList<>();
 		int easy = 0;
@@ -124,7 +130,7 @@ public class QuizStartServlet extends HttpServlet {
 				break;
 		}
 		
-		System.out.println("Question 4: " + quizQuestions.get(4).getQuestion() + "; Answer 1 for 4: " + answers.get(4).get(0).getAnswer());
+		System.out.println("Quiz Questions: " + quizQuestions.size() + "; Answer size: " + answers.size());
 		mgr.closeTransaction();
 		
 		// Create new Record for the user's New Quiz Attempt
@@ -135,9 +141,12 @@ public class QuizStartServlet extends HttpServlet {
 		System.out.println("RECORDID(Create): " + recordNumber);
 		System.out.println("RecordId: " + recordNumber);
 		System.out.println("QuizStartServlet=> Answers: " + answers.size());
+		
 		for( int i =0; i < answers.size(); i++)
 			System.out.println(answers.get(i).get(0).getAnswer());
 		System.out.println("QuizStartServlet=> Questions: " + quizQuestions.size());
+		for( int i =0; i < quizQuestions.size(); i++)
+			System.out.println(quizQuestions.get(i).getQuestion());
 		
 		request.setAttribute("recordId", recordNumber);
 		request.setAttribute("totalQuestions", totalQuestions);

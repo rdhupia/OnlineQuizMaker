@@ -10,6 +10,8 @@
     </head>
     <body>
         <c:remove var="loggedIn" scope="session"/>
+        <c:remove var="quizQuestions" scope="session"/>
+        <c:remove var="quizAnswers" scope="session"/>
         <c:redirect url="login.jsp" />
     </body>
 </html>

@@ -23,7 +23,7 @@ public class QuestionDAO {
     	em.persist(Question);
     }
     
-    public void removeQuestion( int QuestionId ) {
+    public void removeQuestion( long QuestionId ) {
     	em.remove( getQuestion(QuestionId) );
     }
     
@@ -36,8 +36,8 @@ public class QuestionDAO {
     	return em.createQuery("SELECT q FROM Question q where q.quizId =:value1").setParameter("value1", quizId).getResultList();
     }
         
-    public Question getQuestion( long l ) {
-		return em.find(Question.class, l);
+    public Question getQuestion( long id ) {
+		return em.find(Question.class, id);
     }
     
     @SuppressWarnings("unchecked")
